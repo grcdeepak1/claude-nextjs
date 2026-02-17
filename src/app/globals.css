@@ -8,6 +8,12 @@
   --highlight: #fdfd96;
 }
 
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --highlight: #a0a000;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

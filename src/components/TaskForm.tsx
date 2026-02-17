@@ -11,6 +11,7 @@ export function TaskForm({ onCreated }: TaskFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState<Task["priority"]>("medium");
+  const [assignee, setAssignee] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -21,7 +22,7 @@ export function TaskForm({ onCreated }: TaskFormProps) {
     await fetch("/api/tasks", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, description, priority, status: "todo" }),
+      body: JSON.stringify({ title, description, priority, status: "todo", ...(assignee.trim() ? { assignee: assignee.trim() } : {}) }),
     });
     setSubmitting(false);
     onCreated();
@@ -46,6 +47,13 @@ export function TaskForm({ onCreated }: TaskFormProps) {
           rows={2}
           className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
           required
+        />
+        <input
+          type="text"
+          placeholder="Assignee (optional)"
+          value={assignee}
+          onChange={(e) => setAssignee(e.target.value)}
+          className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
         />
         <div className="flex items-center gap-4">
           <label className="text-sm text-zinc-600 dark:text-zinc-400">Priority:</label>

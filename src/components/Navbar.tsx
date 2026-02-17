@@ -3,11 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
+import { Avatar } from "./Avatar";
 
 const links = [
   { href: "/", label: "Home" },
   { href: "/tasks", label: "Tasks" },
   { href: "/notes", label: "Notes" },
+  { href: "/preview", label: "Previews" },
   { href: "/about", label: "About" },
 ];
 
@@ -27,7 +29,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`text-sm font-medium transition-colors ${
-                  pathname === link.href
+                  pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
                     ? "text-blue-600 dark:text-blue-400"
                     : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
                 }`}
@@ -37,7 +39,10 @@ export function Navbar() {
             ))}
           </div>
         </div>
-        <ThemeToggle />
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <Avatar name="Guest User" size="md" />
+        </div>
       </div>
     </nav>
   );

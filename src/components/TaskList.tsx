@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Task } from "@/lib/types";
 import { TaskForm } from "./TaskForm";
+import { Avatar } from "./Avatar";
 
 const statusColors: Record<Task["status"], string> = {
   todo: "bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300",
@@ -104,7 +105,8 @@ export function TaskList() {
                   <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
                     {task.description}
                   </p>
-                  <div className="mt-3 flex gap-2">
+                  <div className="mt-3 flex items-center gap-2">
+                    {task.assignee && <Avatar name={task.assignee} size="sm" />}
                     <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${statusColors[task.status]}`}>
                       {task.status}
                     </span>
