@@ -8,6 +8,7 @@ const tasks: Task[] = [
     description: "Understand file-based routing, layouts, and server components",
     status: "in-progress",
     priority: "high",
+    assignee: "Alice Chen",
     createdAt: new Date().toISOString(),
   },
   {
@@ -16,6 +17,7 @@ const tasks: Task[] = [
     description: "Create RESTful API endpoints using Next.js route handlers",
     status: "todo",
     priority: "medium",
+    assignee: "Bob Smith",
     createdAt: new Date().toISOString(),
   },
   {

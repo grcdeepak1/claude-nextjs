@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
+import { Avatar } from "./Avatar";
 
 const links = [
   { href: "/", label: "Home" },
@@ -37,7 +38,10 @@ export function Navbar() {
             ))}
           </div>
         </div>
-        <ThemeToggle />
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <Avatar name="Guest User" size="md" />
+        </div>
       </div>
     </nav>
   );

@@ -8,7 +8,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const { title, description, status, priority } = body;
+  const { title, description, status, priority, assignee } = body;
 
   if (!title || !description) {
     return NextResponse.json(
@@ -22,6 +22,7 @@ export async function POST(request: NextRequest) {
     description,
     status: status || "todo",
     priority: priority || "medium",
+    ...(assignee ? { assignee } : {}),
   });
 
   return NextResponse.json(task, { status: 201 });
